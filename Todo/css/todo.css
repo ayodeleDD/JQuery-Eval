@@ -1,0 +1,159 @@
+/* styles for todo lists application */
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  position: relative;
+}
+
+#form-elements {
+  width: 800px;
+  display: block;
+  margin: 20px auto 40px;
+}
+
+#form-elements > div {
+  display: inline-block;
+}
+
+#todo-form {
+  width: 59%;
+  float: left;
+}
+
+#todo-form input[type="text"],
+#create-user input[type="text"] {
+  height: 35px;
+  width: 200px;
+  font-size: 18px;
+}
+
+#todo-form select {
+  padding: 10px;
+  padding-right: 10px;
+  margin: 0;
+  border-radius:4px;
+  background: #f8f8f8;
+  color:#333;
+  border:none;
+  outline:none;
+  display: inline-block;
+  cursor:pointer;
+}
+
+#button-group {
+  width: 40%;
+  margin-left: 8px;
+  display: block;
+}
+
+#button-group button:last-of-type {
+  float: right;
+}
+
+#todo-form button,
+#button-group button,
+#create-user button {
+  background-color: #000;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1;
+  border-radius: 5px;
+  border: none;
+  text-shadow: 0 -1px 1px #222;
+  position: relative;
+  cursor: pointer;
+}
+
+#create-user {
+  margin-top: 20px;
+  width: 500px;
+  clear: both;
+  margin-left: 665px;
+}
+
+#container {
+  width: 800px;
+  margin: 20px auto 0;
+  border-top: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
+  clear: both;
+}
+
+#todo-list,
+#users-list {
+  width: 49%;
+  height: 100%;
+  display: inline-block;
+}
+
+#todo-list {
+  text-align: center;
+}
+
+#todo-list ul,
+#users-list ul {
+  list-style: none;
+  padding: 10px 0;
+}
+
+#todo-list ul li input {
+  margin-right: 10px;
+}
+
+#todo-list ul li,
+#users-list ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ececec;
+}
+
+#users-list {
+  text-align: center;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.show {
+  visibility: visible;
+}
+
+.fl-r {
+  float: right;
+}
+
+.fl-l {
+  float: left;
+}
+
+.h2 {
+  width: 49%;
+  font-size: 24px;
+  font-weight: bold;
+  display: inline-block;
+  color: #333;
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ececec;
+}
+
+.strike {
+  text-decoration: line-through;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List jQuery App</title>
+  <link rel="stylesheet" type="text/css" href="css/todo.css">
+</head>
+<body>
+  <div id="form-elements">
+    <div id="todo-form" class="hidden">
+      <label for="todo-text">ToDo:</label>
+      <input type="text" name="todo-text" id="todo-text" placeholder="Enter ToDo Here">
+      <select name="name-list" id="name-list"></select>
+      <button id="todo-save">Save</button>
+    </div>
+    <div id="button-group">
+      <button id="todoButton" style="display: none;">Create ToDo</button>
+      <button id="userButton">Create User</button>
+    </div>
+  </div>
+
+  <div id="create-user" style="display: none;">
+    <label for="user-name">Enter Name:</label>
+    <input type="text" id="user-name">
+    <button id="add-button">Add User</button>
+  </div>
+
+  <div id="container">
+    <div class="h2 fl-l">ToDo List</div>
+    <div class="h2 fl-r">User List</div>
+
+    <div id="todo-list">
+      <ul id="todo-ul-list"></ul>
+    </div>
+    
+    <div id="users-list">
+      <ul id="users-ul-list"></ul>
+    </div>
+  </div>
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script src="js/todo.js"></script>
+</body>
+</html>
