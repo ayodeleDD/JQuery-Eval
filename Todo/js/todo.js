@@ -73,8 +73,8 @@ class ToDoList {
     const $checkBox = $('<input/>').attr({
         'type': 'checkbox',
         'data-id': selectedOption
-    });
-    const $li = $(`<li><span>${todo} assigned by (${selectedOption})</span></li>`);
+      });
+    const $li = $(`<li><span for=${selectedOption}>${todo} assigned by (${selectedOption})</span></li>`);
     $checkBox.prependTo($li);
     $('#todo-ul-list').append($li);
     $('#users-ul-list').find(`span[id="${selectedOption}"]`).text(`(${this.getTaskCount(selectedOption)})`);
@@ -89,7 +89,7 @@ class ToDoList {
   }
 
   getTaskCount(user) {
-    const $todoCount = $('#todo-ul-list').find(`input[data-id=${user}]`).not(':checked');
+    const $todoCount = $('#todo-ul-list').find(`input[data-id='${user}']`).not(':checked');
     return $todoCount.length;
   }
 
