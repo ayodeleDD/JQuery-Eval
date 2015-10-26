@@ -2,7 +2,7 @@
 
 class Validator {
 
-  isFieldValid(fieldText) {
+  isTextFieldEmpty(fieldText) {
     fieldText = fieldText || '';
     if (!fieldText) {
       return false;

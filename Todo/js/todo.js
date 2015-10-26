@@ -8,47 +8,43 @@ class ToDoList {
   init() {
     this.users = {};
     this.validator = new Validator();
-    this.eventBinder(this.users);
+    this.eventBinder();
   }
 
-  eventBinder(userObject) {
+  eventBinder() {
     $('body').on('click', function(e) {
       const target = e.target;
       if (target.id === 'todo-save') {
-        this.createUserTodo(userObject);
+        this.createUserTodo();
       } else if (target.id === 'userButton') {
         $('#create-user').slideToggle();
       } else if (target.id === 'addUserButton') {
-        this.createUser(userObject);
+        this.createUser();
       } else if (target.type === 'checkbox') {
         this.toggleTaskStatus(target);
       }
     }.bind(this));
   }
 
-  createUser(userObject) {
+  createUser() {
     const $createUserForm = $('#create-user');
     const $input = $createUserForm.find('input');
-    if (this.isUserCreated(userObject)) {
-      if (Object.keys(userObject).length) {
-        this.showTodoButton();
-      }
+    if (this.isUserCreated()) {
+      this.showTodoButton();
       $createUserForm.slideUp();
       $('#user-name').val('');
     }
   }
 
-  isUserCreated(userObject) {
-    const name = $('#user-name').val().trim();
-    if (this.validator.isFieldValid(name)) {
-      if (!this.validator.isUserDuplicate(name, userObject)) {
-        const titledName = this.validator.toTitleCase(name);
-        userObject[titledName] = {};
-        $('#users-ul-list').append(`<li>${titledName} <span id="${titledName}">(${this.getTaskCount(titledName)})</span></li>`);
-        this.populateSelectOption(titledName);
-        if (Object.keys(userObject).length) {
-          return true;
-        }
+  isUserCreated() {
+    let name = $('#user-name').val().trim();
+    if (this.validator.isTextFieldEmpty(name)) {
+      if (!this.validator.isUserDuplicate(name, this.users)) {
+        name = this.validator.toTitleCase(name);
+        this.users[name] = {};
+        $('#users-ul-list').append(`<li>${name} <span id="${name}">(${this.getTaskCount(name)})</span></li>`);
+        this.populateSelectOption(name);
+        return true;
       } else {
         alert(`${name} already exists. Please provide another name`);
         return false;
@@ -59,10 +55,10 @@ class ToDoList {
     }
   }
 
-  createUserTodo(userObject) {
+  createUserTodo() {
     const todoText = $('#todo-text').val();
-    if (this.validator.isFieldValid(todoText)) {
-      if (Object.keys(userObject).length) {
+    if (this.validator.isTextFieldEmpty(todoText)) {
+      if (Object.keys(this.users).length) {
         this.createTodo(todoText);
       } else {
         alert('No Users Available To Create Task For. Please Create a User.');
@@ -76,7 +72,8 @@ class ToDoList {
     const selectedOption = $('#name-list').find('option:selected').text();
     const $checkBox = $('<input/>').attr({
         'type': 'checkbox',
-        'data-id': selectedOption});
+        'data-id': selectedOption
+    });
     const $li = $(`<li><span>${todo} assigned by (${selectedOption})</span></li>`);
     $checkBox.prependTo($li);
     $('#todo-ul-list').append($li);
@@ -86,7 +83,6 @@ class ToDoList {
   }
 
   toggleTaskStatus(target) {
-    const that = this;
     $(target).next().toggleClass('strike');
     const targetUser = $(target).data('id');
     $('#users-ul-list').find(`span[id="${targetUser}"]`).text(`(${this.getTaskCount(targetUser)})`);
@@ -107,7 +103,7 @@ class ToDoList {
   showTodoButton() {
     $('#todoButton').fadeIn()
       .on('click', function() {
-        $('#todo-form').removeClass('hidden').addClass('show');
+        $('#todo-form').removeClass('hidden');
     });
   }
 }
